@@ -12,10 +12,11 @@ struct cancion
  
 using namespace std;
 int main() {
+	int minutos=0,segundos=0;
 	setlocale(LC_CTYPE,"Spanish");
 
 	cout<<"\n------- Ingrese Datos de la Canción -------\n"<<endl;
-	cout<<"Titulo: ";
+	cout<<"Título: ";
 	cin.getline(cancion1.titulo,20,'\n');
 	cout<<"Artista: ";
 	cin.getline(cancion1.artista,20,'\n');
@@ -24,11 +25,18 @@ int main() {
 	cout<<"Tamaño (en Kb): ";
 	cin>>cancion1.tamano;
 	
-	cout<<"\n       Datos de la Cancion \n"<<endl;
+	cout<<"\n       Datos de la Canción \n"<<endl;
 	cout<<cancion1.artista<<" - "<<cancion1.titulo<<".mp3\n"<<endl;
 	cout<<"Nombre 		:  "<<cancion1.titulo<<endl;
 	cout<<"Artista		:  "<<cancion1.artista<<endl;
-	cout<<"Duracion	:  "<<cancion1.duracion<<" segundos"<<endl;
+		segundos=segundos+cancion1.duracion;
+		for(int i=0;i<10;i++){
+			if(segundos>=60){
+				segundos-=60;
+				minutos++;
+			}
+		}
+	cout<<"Duración	:  "<<minutos<<" Minutos "<<segundos<<" segundos"<<endl;
 	cout<<"Tamaño 		:  "<<cancion1.tamano<<" Kb\n";
 	
 	getch();	

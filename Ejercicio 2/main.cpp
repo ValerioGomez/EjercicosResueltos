@@ -16,7 +16,8 @@ int main() {
 
 	cout<<"\n------- Guardar Datos de Imágenes -------\n"<<endl;
 	for(int i=0;i<2;i++){
-		cout<<" Datos de la Imagen ";
+		fflush(stdin);//vaciar el buffer xq se llenaria de basura en la primera iteracion
+		cout<<" Datos de la Imagen "<<i+1<<endl;
 		cout<<"	Nombre : ";
 		cin.getline(imagenes[i].nombre,20,'\n');
 		cout<<"	Ancho (en píxeles) : ";
@@ -25,7 +26,10 @@ int main() {
 		cin>>imagenes[i].alto;
 		cout<<"	Tamaño : ";
 		cin>>imagenes[i].tamano;
-		
+		cout<<endl;
+		if(i==1){
+			cout<<"Se Termino el Espacio";
+		}
 	}
 	
 	getch();	
