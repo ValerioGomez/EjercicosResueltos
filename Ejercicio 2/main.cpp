@@ -25,13 +25,14 @@ int incremento(int x){
 using namespace std;
 int main() {
 	setlocale(LC_CTYPE,"Spanish");
-
-	cout<<"\n------- Guardar Datos de Imágenes -------\n"<<endl;
+	cout<<"Guardar Datos de Imagenes por Estrucura";
+	cout<<"\n------- Guardar Datos-------\n"<<endl;
 	menu();
 	
 	getch();	
 	return 0;
 }
+
 
 void PedirDatos(int y){
 	cout<<"\n**************************************************\n";
