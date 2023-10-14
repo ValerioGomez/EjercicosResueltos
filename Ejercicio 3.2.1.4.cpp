@@ -1,50 +1,44 @@
 #include <iostream>
+#include <vector>
+#include <algorithm>
 
 using namespace std;
 const int MAX_N = 20;
-bool contains(int arr[], int size, int value) {
-    for (int i = 0; i < size; i++) {
-        if (arr[i] == value) {
-            return true; 
-        }
-    } //si se encuentra o no en la lista
-    return false; 
-}
 
 bool canPartition(int numbers[], int n, int X) {
     int half = n / 2;
 
-    int sums_left[MAX_N * MAX_N] = {0}; 
-    int sums_right[MAX_N * MAX_N] = {0};
+    vector<int> sums_left; 
+    vector<int> sums_right;
 
     // Búsqueda hacia la izquierda
     for (int mask = 0; mask < (1 << half); mask++) {
         int sum = 0;
-        int index = 0;
         for (int i = 0; i < half; i++) {
             if (mask & (1 << i)) {
                 sum += numbers[i];
-                sums_left[index++] = sum;
             }
         }
+        sums_left.push_back(sum);
     }
 
     // Búsqueda hacia la derecha
     for (int mask = 0; mask < (1 << (n - half)); mask++) {
         int sum = 0;
-        int index = 0;
         for (int i = 0; i < (n - half); i++) {
             if (mask & (1 << i)) {
                 sum += numbers[half + i];
-                sums_right[index++] = sum;
             }
         }
+        sums_right.push_back(sum);
     }
 
+    // Ordenar el vector sums_right
+    sort(sums_right.begin(), sums_right.end());
+
     // Verificar si se encuentra una suma igual a X
-    for (int i = 0; i < MAX_N * MAX_N; i++) {
-        if (sums_left[i] == 0) break;
-        if (contains(sums_right, MAX_N * MAX_N, X - sums_left[i])) {
+    for (int i = 0; i < sums_left.size(); i++) {
+        if (binary_search(sums_right.begin(), sums_right.end(), X - sums_left[i])) {
             return true;
         }
     }
@@ -58,17 +52,16 @@ int main() {
 
     while (T--) {
         int X, n;
-        cin >> X >> n;
-
+        cin >> X >>n;
         int numbers[MAX_N];
         for (int i = 0; i < n; i++) {
-            std::cin >> numbers[i];
+            cin >> numbers[i];
         }
 
         if (canPartition(numbers, n, X)) {
-            cout << "Si se encuentra en un Conjunto" << std::endl;
+            cout << "Si se encuentra en un Conjunto" << "\n *************************" <<endl;
         } else {
-            cout << "NO se encuentra ninguno" << std::endl;
+            cout << "NO se encuentra ninguno" << "\n *************************" <<endl;
         }
     }
 
