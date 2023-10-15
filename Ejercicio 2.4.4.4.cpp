@@ -59,7 +59,7 @@ int main() {
 
     int frecuenciaDeseada = 7; // Frecuencia deseada
 
-    int minIndex = ft.funcionRequerida(frecuenciaDeseada);
+    int minIndex = ft.funcionRequerida(7) = 5
 
     cout << "El Indice minimo para tener al menos " << frecuenciaDeseada << " estudiantes es: " << minIndex << endl;
 
